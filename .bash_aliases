@@ -9,7 +9,7 @@
 export BROWSER=$HOME/.local/bin/chrome
 export SKAFFOLD_UPDATE_CHECK=false
 export PGPASSFILE="$HOME/.pgpass"
-# export KUBECONFIGS_PATH=$HOME/.kube/kubeconfigs
+export KUBECONFIGS_PATH=$HOME/.kube/kubeconfigs
 
 
 ################################# ..AZURE #################################
@@ -76,15 +76,14 @@ done | sort -n | awk ' {tot = tot+$1; print } END { printf("%.2fMB\n",tot/(1024*
 ################################## ..KUBECTL ##################################
 alias k='kubectl '
 alias ka='kubectl apply -f '
+alias kdel='kubectl delete -f '
 alias kall='kubectl get po,svc,pvc,deploy'
 alias kallw='watch kubectl get po,svc,pvc,deploy'
 alias kgc='kubectl config get-contexts '
 alias kuc='kubectl config use-context '
 alias kd='kubectl describe '
-alias kroles='kubectl get serviceaccount,role,rolebinding '
-alias kapi="echo $(kubectl config view --minify -o jsonpath='{.clusters[0].cluster.server}')"
+alias kexp='kubectl explain '
 
-alias kdel='kubectl delete -f '
 alias kg='kubectl get '
 alias kns='kubectl config set-context $(kubectl config current-context)  --namespace  '
 alias kpo='kubectl get pods '
@@ -96,22 +95,22 @@ alias kcdel='kubectl config delete-context '
 alias kubels='ls -la ~/.kube/kubeconfigs '
 alias kenv='echo $KUBECONFIG'
 alias ktoken='cat $KUBECONFIG | grep -i "token:"'
-alias kncl='kubectl config set-context $(kubectl config current-context)  --namespace  cattle-logging'
-alias kncp='kubectl config set-context $(kubectl config current-context)  --namespace  cattle-prometheus'
-alias kncs='kubectl config set-context $(kubectl config current-context)  --namespace  cattle-system'
-alias kncm='kubectl config set-context $(kubectl config current-context)  --namespace  cluster-manager'
-alias knd='kubectl config set-context $(kubectl config current-context)  --namespace  default'
-alias knin='kubectl config set-context $(kubectl config current-context)  --namespace  ingress-nginx'
-alias knjd='kubectl config set-context $(kubectl config current-context)  --namespace  jarvis-dev'
-alias knju='kubectl config set-context $(kubectl config current-context)  --namespace  jarvis-uat'
-alias knknl='kubectl config set-context $(kubectl config current-context)  --namespace  kube-node-lease'
-alias knkb='kubectl config set-context $(kubectl config current-context)  --namespace  kube-public'
-alias knks='kubectl config set-context $(kubectl config current-context)  --namespace  kube-system'
-alias knni='kubectl config set-context $(kubectl config current-context)  --namespace  nginx-ingress'
-alias knss='kubectl config set-context $(kubectl config current-context)  --namespace  security-scan'
-alias knt='kubectl config set-context $(kubectl config current-context)  --namespace  trident'
-
-
+alias kroles='kubectl get serviceaccount,role,rolebinding '
+alias kapi="echo $(kubectl config view --minify -o jsonpath='{.clusters[0].cluster.server}')"
+# Get nodes region and zone
+alias kzone='kubectl get nodes --label-columns failure-domain.beta.kubernetes.io/region,failure-domain.beta.kubernetes.io/zone'
+# Get Arch, OS, Instance type and node type if kops
+alias kos='kubectl get nodes -L beta.kubernetes.io/arch -L beta.kubernetes.io/os -L beta.kubernetes.io/instance-type -L  kops.k8s.io/instancegroup'
+# Get pods qos
+alias kqos='kubectl get pods --all-namespaces -o custom-columns=NAME:.metadata.name,NAMESPACE:.metadata.namespace,QOS-CLASS:.status.qosClass '
+# Get images running
+alias kimages='kubectl get pod -o=custom-columns=NAME:.metadata.name,IMAGE:.spec.containers[*].image --all-namespaces'
+# Get pods and sort by name
+alias kaz='kubectl get pods -o wide --sort-by="{.spec.nodeName}" '
+# Get pods which are not in Running State
+alias knorun='kubectl get pods --field-selector=status.phase!=Running --all-namespaces'
+# Create a busybox pod for testing
+alias kbusy="kubectl run busy1 --image=busybox -i --tty --limits='cpu=50m,memory=128Mi' --requests='cpu=50m,memory=128Mi' --label=busy1"
 export do='--dry-run -o yaml'
 export b64='| base64'
 export b64d='| base64 --decode'
@@ -205,7 +204,7 @@ export LC_ALL=en_US.UTF-8
 ################################## ..MISC ##################################
 alias refp='source ~/.bash_profile'
 alias refrc='source ~/.bashrc'
-alias reff=reff; reff () {
+alias ref=ref; ref () {
   start=`date +%s`
   chmod 600 $HOME/.bash_aliases $HOME/.bashrc
   source $HOME/.bash_aliases
