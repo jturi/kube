@@ -9,6 +9,7 @@
 export BROWSER=$HOME/.local/bin/chrome
 export SKAFFOLD_UPDATE_CHECK=false
 export PGPASSFILE="$HOME/.pgpass"
+# export KUBECONFIGS_PATH=$HOME/.kube/kubeconfigs
 
 
 ################################# ..AZURE #################################
@@ -131,18 +132,24 @@ alias kapi='kubectl api-versions'
 # cluster-dn8-sp-kcapp001_BeonStable.config, cluster-dn8-sp-kcapp101_BeonTC.config etc.
 # After that these scripts will find them and use them as KUBECONFIG env variable
 alias ks=ks; ks() {
-  grep_count=`ls $HOME/.kube/kubeconfigs | grep -i $1 | wc -l`
+  if ! [ -n "$KUBECONFIGS_PATH" ]; then
+  echo -e "${RED}Please set KUBECONFIGS_PATH like:\nexport KUBECONFIGS_PATH=~/.kube${NORMAL}"
+  echo -e "${YELLOW}Usage: ks keyword_here\n(k)ubeconfig (s)witch ks will search your KUBECONFIGS_PATH folder and search for matching cluster config filename and set KUBECONFIG environment variable.${NORMAL}"
+  return
+  fi
+  grep_count=`ls $KUBECONFIGS_PATH | grep -i $1 | wc -l`
 
   if [[ $grep_count == 1 ]]; then
-    config_name=`ls $HOME/.kube/kubeconfigs | grep -i $1`
+    config_name=`ls $KUBECONFIGS_PATH | grep -i $1`
     echo -e "${GREEN}Changing config to $config_name${NORMAL}"
-    export KUBECONFIG=$HOME/.kube/kubeconfigs/$config_name
+    export KUBECONFIG=$KUBECONFIGS_PATH/$config_name
     echo "KUBECONFIG set: $KUBECONFIG"
   elif [[ $grep_count == 0 ]]; then
-    echo -e "${RED}No matches found to: $1${NORMAL}"
+    echo -e "${RED}Please type a few letters for switching to clsuster: $1${NORMAL}"
+    ls $KUBECONFIGS_PATH
   else
-    echo -e "${RED}More then one matches found:${NORMAL}"
-    ls $HOME/.kube/kubeconfigs | grep -i $1
+    echo -e "${RED}More then one matches found with grep, please specify:${NORMAL}"
+    ls $KUBECONFIGS_PATH | grep -i $1
   fi
 }
 alias ksconfig="export KUBECONFIG=$HOME/.kube/config"
