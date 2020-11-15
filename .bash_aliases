@@ -93,8 +93,12 @@ alias ksec='kubectl get secrets,configmap'
 alias ksa='kubectl get serviceaccount,role,rolebinding'
 alias kcdel='kubectl config delete-context '  
 alias kubels='ls -la ~/.kube/kubeconfigs '
+# Print current KUBECONFIG config file path
 alias kenv='echo $KUBECONFIG'
+# Get current user token from KUBECONFIG file
 alias ktoken='cat $KUBECONFIG | grep -i "token:"'
+# Get all events in namespace sorted by Timestamp, use kevent -A to get events for all namespaces
+alias kevent='kubectl get events --sort-by=.metadata.creationTimestamp '
 alias kroles='kubectl get serviceaccount,role,rolebinding '
 alias kapi="echo $(kubectl config view --minify -o jsonpath='{.clusters[0].cluster.server}')"
 # Get nodes region and zone

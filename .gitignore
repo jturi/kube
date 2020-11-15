@@ -1,0 +1,6 @@
+# Ignore everything:
+**/*
+# De-ignore bellow files:
+!.gitignore
+!.bash_aliases
+!alias.sh
