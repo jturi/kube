@@ -24,5 +24,6 @@ echo 'set tabstop=4 softtabstop=0 expandtab shiftwidth=2 smarttab' > ~/.vimrc
 echo 'export do="--dry-run=client -o yaml"' >> ~/.bash_aliases
 echo 'export dor="--restart=Never --dry-run=client -o yaml"' >> ~/.bash_aliases
 echo 'export rn="--restart=Never"' >> ~/.bash_aliases
+echo 'export KUBECONFIG=~/.kube/config' >> ~/.bash_aliases
 alias >> ~/.bash_aliases
 echo export PS1=\""\033[0;32m\u \h (\\\$(kubectl config current-context)|\\\$(kubectl config view --minify --output 'jsonpath={..namespace}'))\033[0;00m \W \n\\$ "\" >> ~/.bash_aliases
