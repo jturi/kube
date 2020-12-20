@@ -16,11 +16,13 @@ alias kgc='kubectl config get-contexts'
 alias kn='kubectl config set-context $(kubectl config current-context) --namespace'
 alias screen1='screen -d -r screen1 || screen -S screen1'
 alias lg="ls -laFh | grep -i "
+alias lt="echo 'Showing first 10 results:' && ls -lacth  --show-control-chars -F --color | head -n 11"
 alias tmux1='tmux new -A -s tmux1'
-alias th="echo 'set -g prefix C-a, copy:a[, Ctrl-Space, Alt-w, a] setw synchronize-panes, ||:a o|o, =:a \", switch:a q 1, cycle:a o, toggle:a;, move:P->, zoom:a z, towindow:a \!'"
+alias th="echo 'set -g prefix C-a, copy Ctrl-a [, Ctrl-Space, Alt-w, Ctrl-a ] setw synchronize-panes, || Ctrl-a o|o, =: Ctrl-a \", switch Ctrl-a q 1, cycle Ctrl-a o, toggle: Ctrl-a ;, move:P->, zoom Ctrl-a z, towindow Ctrl-a \!'"
 echo 'source <(kubectl completion bash)' >> ~/.bash_aliases
 echo 'complete -F __start_kubectl k' >> ~/.bash_aliases
 echo 'set tabstop=4 softtabstop=0 expandtab shiftwidth=2 smarttab' > ~/.vimrc
+echo 'set -g prefix C-a' > ~/.tmux.conf
 echo 'export do="--dry-run=client -o yaml"' >> ~/.bash_aliases
 echo 'export dor="--restart=Never --dry-run=client -o yaml"' >> ~/.bash_aliases
 echo 'export rn="--restart=Never"' >> ~/.bash_aliases
