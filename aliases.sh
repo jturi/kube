@@ -7,9 +7,9 @@ alias k='kubectl '
 alias ka='kubectl apply -f '
 alias kdel='kubectl delete -f '
 alias kd='kubectl describe '
-alias kp='kubectl get po'
+alias kev='kubectl get events --sort-by=metadata.creationTimestamp'
+alias kpo='kubectl get po -A --sort-by=.metadata.creationTimestamp'
 alias kall='kubectl get deploy,po,svc,ingress,pvc'
-alias kallt='kubectl get po -A --sort-by=.metadata.creationTimestamp '
 alias kallw='watch kubectl get deploy,po,svc,ingress,pvc'
 alias kuc='kubectl config use-context'
 alias kgc='kubectl config get-contexts'
@@ -18,7 +18,7 @@ alias screen1='screen -d -r screen1 || screen -S screen1'
 alias lg="ls -laFh | grep -i "
 alias lt="echo 'Showing first 10 results:' && ls -lacth  --show-control-chars -F --color | head -n 11"
 alias tmux1='tmux new -A -s tmux1'
-alias th="echo 'set -g prefix C-a, copy Ctrl-a [, Ctrl-Space, Alt-w, Ctrl-a ] setw synchronize-panes, || Ctrl-a o|o, =: Ctrl-a \", switch Ctrl-a q 1, cycle Ctrl-a o, toggle: Ctrl-a ;, move:P->, zoom Ctrl-a z, towindow Ctrl-a \!'"
+alias th="echo 'set -g prefix C-a, copy Ctrl-a [, Indent V > Ctrl-Space, Alt-w, Ctrl-a ] setw synchronize-panes, || Ctrl-a o|o, =: Ctrl-a \", switch Ctrl-a q 1, cycle Ctrl-a o, toggle: Ctrl-a ;, move:P->, zoom Ctrl-a z, towindow Ctrl-a \!'"
 echo 'source <(kubectl completion bash)' >> ~/.bash_aliases
 echo 'complete -F __start_kubectl k' >> ~/.bash_aliases
 echo 'set tabstop=4 softtabstop=0 expandtab shiftwidth=2 smarttab' > ~/.vimrc
