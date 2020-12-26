@@ -21,7 +21,7 @@ alias tmux1='tmux new -A -s tmux1'
 alias th="echo 'set -g prefix C-a, copy Ctrl-a [, Indent V > Ctrl-Space, Alt-w, Ctrl-a ] setw synchronize-panes, || Ctrl-a o|o, =: Ctrl-a \", switch Ctrl-a q 1, cycle Ctrl-a o, toggle: Ctrl-a ;, move:P->, zoom Ctrl-a z, towindow Ctrl-a \!'"
 echo 'source <(kubectl completion bash)' >> ~/.bash_aliases
 echo 'complete -F __start_kubectl k' >> ~/.bash_aliases
-echo 'set tabstop=4 softtabstop=0 expandtab shiftwidth=2 smarttab' > ~/.vimrc
+echo 'set tabstop=2 softtabstop=0 expandtab shiftwidth=2 smarttab' > ~/.vimrc
 echo 'set -g prefix C-a' > ~/.tmux.conf
 echo 'export do="--dry-run=client -o yaml"' >> ~/.bash_aliases
 echo 'export dor="--restart=Never --dry-run=client -o yaml"' >> ~/.bash_aliases
