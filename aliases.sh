@@ -19,6 +19,7 @@ alias lg="ls -laFh | grep -i "
 alias lt="echo 'Showing first 10 results:' && ls -lacth  --show-control-chars -F --color | head -n 11"
 alias tmux1='tmux new -A -s tmux1'
 alias th="echo 'set -g prefix C-a, copy Ctrl-a [, Indent V > Ctrl-Space, Alt-w, Ctrl-a ] setw synchronize-panes, || Ctrl-a o|o, =: Ctrl-a \", switch Ctrl-a q 1, cycle Ctrl-a o, toggle: Ctrl-a ;, move:P->, zoom Ctrl-a z, towindow Ctrl-a \!'"
+echo 'export PATH=~/bin:$PATH:' >> ~/.bash_aliases
 echo 'source <(kubectl completion bash)' >> ~/.bash_aliases
 echo 'complete -F __start_kubectl k' >> ~/.bash_aliases
 echo 'set tabstop=2 softtabstop=0 expandtab shiftwidth=2 smarttab' > ~/.vimrc
