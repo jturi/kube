@@ -1,7 +1,11 @@
 #!/bin/bash
-echo "aliases added to ~/.bash_aliases"
+echo "aliases added to ~/.bash_aliases, to use them run:"
 echo 'source ~/.bash_aliases'
+
+# Clear .bash_aliases file
 > ~/.bash_aliases
+
+# Shortcut to refresh .bash_aliases file
 alias ref='source ~/.bash_aliases'
 
 # kubectl shortcuts
