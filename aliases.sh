@@ -45,11 +45,11 @@ alias screen1='screen -d -r screen1 || screen -S screen1'
 echo 'set tabstop=2 softtabstop=0 expandtab shiftwidth=2 smarttab' > ~/.vimrc
 echo 'set -g prefix C-a' > ~/.tmux.conf
 
-# PS1 config for kubectl curreent context and current namespace
-# PS1 will look like this:
+# PS1 config for kubectl current context and current namespace
+echo export PS1=\""\033[0;32m\u \h (\\\$(kubectl config current-context)|\\\$(kubectl config view --minify --output 'jsonpath={..namespace}'))\033[0;00m \W \n\\$ "\" >> ~/.bash_aliases
+# PS1 after the change:
 # k8s winx1 (kubernetes-admin@kubernetes|kube-system) .kube
 # user host         cluster name          namespace   folder
-echo export PS1=\""\033[0;32m\u \h (\\\$(kubectl config current-context)|\\\$(kubectl config view --minify --output 'jsonpath={..namespace}'))\033[0;00m \W \n\\$ "\" >> ~/.bash_aliases
 
 # Save aliases to ~/.bash_aliases
 alias >> ~/.bash_aliases
