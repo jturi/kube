@@ -14,6 +14,8 @@ alias ka='kubectl apply -f '
 alias kdel='kubectl delete -f '
 alias kall='kubectl get po,deploy,rs,svc,ingress,pvc'
 alias kallw='watch kubectl get po,deploy,rs,svc,ingress,pvc'
+alias kjob='kubectl get job,cronjob,pod'
+alias kjobw='watch kubectl get job,cronjob,pod'
 alias kev='kubectl get events --sort-by=metadata.creationTimestamp'
 alias kpo='kubectl get po -A --sort-by=.metadata.creationTimestamp'
 echo 'export do="--dry-run=client -o yaml"' >> ~/.bash_aliases
